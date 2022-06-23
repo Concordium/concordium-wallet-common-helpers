@@ -1,0 +1,15 @@
+.root {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.status,
+.submit {
+    margin: 40px 30px 20px;
+}
+
+.status {
+    margin-bottom: 0;
+}

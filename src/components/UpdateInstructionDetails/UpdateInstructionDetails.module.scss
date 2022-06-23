@@ -1,0 +1,7 @@
+@import 'config/bundle';
+
+.root {
+    > *:not(:last-child) {
+        margin-bottom: 60px;
+    }
+}

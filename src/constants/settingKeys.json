@@ -1,0 +1,9 @@
+{
+    "preferences": "preferences",
+    "nodeSettings": "node",
+    "passwordSettings": "password",
+    "password": "passwordSetting",
+    "foundationTransactionsEnabled": "foundationTransactionsEnabled",
+    "nodeLocation": "nodeLocation",
+    "showMemoWarning": "showMemoWarning"
+}

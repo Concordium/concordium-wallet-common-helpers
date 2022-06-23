@@ -1,0 +1,11 @@
+@import 'config/bundle';
+
+.errorLabel {
+    text-align: center;
+    color: $color-error;
+}
+
+.header {
+    text-align: center;
+    font-weight: $font-weight-emphasized;
+}

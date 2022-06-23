@@ -1,0 +1,21 @@
+@import 'config/bundle';
+
+.root {
+    @include shadowBorder;
+
+    border-radius: 10px;
+    padding: 20px;
+    background-color: $color-white;
+    transition: box-shadow $anim-easing $anim-timing;
+}
+
+.dark {
+    background-color: $color-off-black;
+}
+
+.header {
+    margin: 0 -20px;
+    border-bottom: 1px solid $color-grey;
+    font-weight: $font-weight-light;
+    padding: 0 20px 15px;
+}

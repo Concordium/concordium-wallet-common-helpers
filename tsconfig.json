@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ESNext",
+        "lib": ["dom", "esnext", "webworker"],
+        "jsx": "react",
+        "baseUrl": ".",
+        "strict": true,
+        "sourceMap": true,
+        /* Additional Checks */
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        /* Module Resolution Options */
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "skipLibCheck": true,
+        "paths": {
+            "~/*": ["./*"]
+        }
+    },
+    "exclude": [
+        "scripts",
+        "test",
+        "release",
+        "app/main.dev.js",
+        "app/preload.dev.js",
+        "app/preload.prod.js",
+        "app/main.prod.js",
+        "app/renderer.prod.js",
+        "app/dist",
+        "dll"
+    ]
+}

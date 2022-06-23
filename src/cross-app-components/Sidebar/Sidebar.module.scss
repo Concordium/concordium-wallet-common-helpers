@@ -1,0 +1,110 @@
+@import 'config/bundle';
+
+$sidebar-link-height: $page-header-height;
+
+.root {
+    position: fixed;
+    height: 100vh;
+    width: $sidebar-width;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: overlay;
+    border-right: 1px solid $color-grey;
+
+    &::-webkit-scrollbar-thumb {
+        box-shadow: 0 0 transparent;
+        background-color: transparent;
+    }
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.bottom,
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: $font-size-h6;
+}
+
+@mixin emphItem() {
+    color: $color-pale-blue;
+
+    svg * {
+        fill: $color-pale-blue;
+    }
+}
+
+.item {
+    flex: 0 0 $sidebar-link-height;
+    text-decoration: none;
+    color: $color-text;
+    position: relative;
+    transition: color ease-in 0.1s;
+
+    svg path {
+        transition: fill ease-in 0.1s;
+    }
+
+    &::before {
+        content: '';
+        display: block;
+        height: 15%;
+        opacity: 0;
+        width: 6px;
+        border-radius: 3px;
+        background-color: $color-pale-blue;
+        position: absolute;
+        left: 20px;
+        transition: height ease-out 0.2s, opacity ease-out 0.2s;
+    }
+
+    &Active {
+        @include emphItem;
+
+        &::before {
+            height: 70%;
+            opacity: 1;
+        }
+    }
+
+    &:focus,
+    &:hover {
+        outline: none;
+
+        &:not(.disabled):link {
+            @include emphItem;
+        }
+    }
+}
+
+.title {
+    margin-top: 5px;
+}
+
+.bottom {
+    padding: 10px 0;
+    color: $color-text-faded;
+
+    > * + * {
+        margin-top: 18px;
+    }
+}
+
+.disabled {
+    cursor: default;
+    opacity: 0.5;
+
+    &,
+    &:hover,
+    &:visited {
+        color: $color-grey;
+    }
+}

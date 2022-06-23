@@ -1,0 +1,19 @@
+@import 'config/bundle';
+
+.root {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: $font-size-body2;
+}
+
+.icon {
+    width: 100px;
+    height: 100px;
+}
+
+.message {
+    margin-top: 40px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
