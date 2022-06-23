@@ -1,5 +1,0 @@
-{
-    "onAwaitVerificationKey": "LEDGER_ON_AWAIT_VERIFICATION_KEY",
-    "onVerificationKeysConfirmed": "LEDGER_ON_VERIFICATION_KEY_CONFIRMED",
-    "listenChannel": "LEDGER_LISTEN_CHANNEL"
-}

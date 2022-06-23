@@ -5,7 +5,7 @@ import {
     parseSubNumber,
     toFraction,
     addThousandSeparators,
-} from '~/utils/numberStringHelpers';
+} from './numberStringHelpers';
 
 export function getCcdSymbol(): string {
     return '\u03FE';

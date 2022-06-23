@@ -71,3 +71,5 @@ target/
 # Generated license disclaimer
 scripts/disclaimer.rst
 scripts/disclaimer.txt
+
+lib

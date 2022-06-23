@@ -1,5 +1,4 @@
 import { Buffer } from 'buffer/';
-import { Fraction } from './types';
 
 /**
  * Partitions the array according to the given criteria
@@ -107,46 +106,24 @@ export async function asyncNoOp(): Promise<void> {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const valueNoOp = <V>(v: V) => v;
 
-export const ensureNumberLength = (length: number) => (
-    value?: string
-): string => {
-    if (!value) {
-        return '';
-    }
+export const ensureNumberLength =
+    (length: number) =>
+    (value?: string): string => {
+        if (!value) {
+            return '';
+        }
 
-    const valueLength = value.length;
+        const valueLength = value.length;
 
-    if (valueLength >= length) {
-        return value;
-    }
+        if (valueLength >= length) {
+            return value;
+        }
 
-    const missing = length - valueLength;
-    const prepend = new Array(missing).fill(`0`).join('');
+        const missing = length - valueLength;
+        const prepend = new Array(missing).fill(`0`).join('');
 
-    return `${prepend}${value}`;
-};
-
-/**
- * Collapses the Fraction into a single number.
- * If the denominator does not divide the numerator, the function rounds up;
- */
-export function collapseFraction({ numerator, denominator }: Fraction): bigint {
-    const quotient = numerator / denominator;
-    if (numerator % denominator === 0n) {
-        return quotient;
-    }
-    return 1n + quotient;
-}
-
-export function multiplyFraction(
-    { numerator, denominator }: Fraction,
-    factor: bigint | string
-): Fraction {
-    return {
-        numerator: numerator * BigInt(factor),
-        denominator,
+        return `${prepend}${value}`;
     };
-}
 
 /**
  * Returns the absolute value of the given bigint.
@@ -174,12 +151,6 @@ export function pipe<A extends any[], B, C>(
     b: (arg: B) => C
 ): (...args: A) => C {
     return (...args) => b(a(...args));
-}
-
-export function throwLoggedError(message: string): never {
-    const error = new Error(message);
-    window.log.error(error);
-    throw error;
 }
 
 /**
