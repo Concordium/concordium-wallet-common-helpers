@@ -103,5 +103,9 @@
         "hooks": {
             "pre-commit": "lint-staged"
         }
+    },
+    "peerDependencies": {
+        "react": ">=16",
+        "react-dom": ">=16"
     }
 }
