@@ -3,6 +3,7 @@ export * from './utils/numberStringHelpers';
 export * from './utils/types';
 export * from './utils/accountHelpers';
 export * from './utils/basicHelpers';
+export * from './utils/timeHelpers';
 export * from './utils/hooks';
 export * from './utils/eventHooks';
 
