@@ -184,3 +184,13 @@ export function filterRecordEntries<K extends string | number | symbol, V>(
         return acc;
     }, result);
 }
+
+/**
+ * Async timeout
+ * @param time timeout length, in milliseconds.
+ */
+export async function sleep(time: number) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, time);
+    });
+}
