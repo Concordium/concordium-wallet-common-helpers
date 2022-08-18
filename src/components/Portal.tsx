@@ -15,8 +15,6 @@ interface PortalProps {
     className?: string;
 }
 
-const defaultRoot = document.getElementsByTagName('body')[0];
-
 /**
  * @description
  * Open children in react portal. Good for spawning elements elsewhere in the DOM tree (modals, popups, etc.)
@@ -32,7 +30,10 @@ export default function Portal({
     className,
 }: PropsWithChildren<PortalProps>) {
     const { current: el } = useRef(document.createElement('div'));
-    const root = useMemo(() => r ?? defaultRoot, [r]);
+    const root = useMemo(
+        () => r ?? document.getElementsByTagName('body')[0],
+        [r]
+    );
 
     useEffect(() => {
         if (className) {
