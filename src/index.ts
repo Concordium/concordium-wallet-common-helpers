@@ -8,5 +8,6 @@ export * from './utils/eventHooks';
 export * from './utils/identity/types';
 export * from './utils/timeHelpers';
 export * from './utils/identityHelpers';
+export * from './utils/JSONHelper';
 
 export * from './components';
