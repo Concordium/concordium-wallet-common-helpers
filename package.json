@@ -10,6 +10,7 @@
         "lint-fix": "yarn --silent lint --fix; exit 0",
         "test": "jest"
     },
+    "packageManager": "yarn@3.2.0",
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": ["eslint --cache --fix"],
         "{*.json,.{eslintrc,prettierrc,stylelintrc}}": [
