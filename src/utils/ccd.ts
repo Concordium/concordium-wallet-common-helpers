@@ -1,5 +1,4 @@
 import {
-    getPowerOf10,
     formatNumberStringWithDigits,
     isValidResolutionString,
     parseSubNumber,
@@ -12,6 +11,7 @@ export function getCcdSymbol(): string {
 }
 
 export const microCcdPerCcd = 1000000n;
+export const ccdMaxDecimal = 6;
 const separator = '.';
 
 /**
@@ -39,11 +39,34 @@ export const isValidCcdString = isValidResolutionString(
     false
 );
 
-/**
- * expects the fractional part of the a CCD string.
- * i.e. from an amount of 10.001, the subCCD string is 001.
- */
-const parseSubCcd = parseSubNumber(getPowerOf10(microCcdPerCcd));
+const decimalsToResolution = (maxDecimals: number) =>
+    10n ** BigInt(maxDecimals);
+
+export function fractionalToInteger(amount: string, maxDecimals: number) {
+    const integerPerFractional = decimalsToResolution(maxDecimals);
+    if (
+        !isValidResolutionString(
+            integerPerFractional,
+            false,
+            false,
+            false
+        )(amount)
+    ) {
+        throw new Error('Given string that was not a valid amount string.');
+    }
+    if (amount.includes(separator)) {
+        const separatorIndex = amount.indexOf(separator);
+        const beforeSep = amount.slice(0, separatorIndex);
+        const afterSep = parseSubNumber(maxDecimals)(
+            amount.slice(separatorIndex + 1)
+        );
+        return BigInt(beforeSep) * integerPerFractional + BigInt(afterSep);
+    }
+    return BigInt(amount) * integerPerFractional;
+}
+
+export const integerToFractional = (maxDecimals: number) =>
+    toFraction(decimalsToResolution(maxDecimals));
 
 /**
  * Convert a microCCD amount to a ccd string.
@@ -51,23 +74,13 @@ const parseSubCcd = parseSubNumber(getPowerOf10(microCcdPerCcd));
  * N.B. Gives the absolute value of the amount.
  * N.B. In case the input is a string, it is assumed that it represents the value in microCCD.
  */
-export const microCcdToCcd = toFraction(microCcdPerCcd);
+export const microCcdToCcd = integerToFractional(ccdMaxDecimal);
 
 /**
  * Given a CCD string, convert to microCCD
  */
-export function ccdToMicroCcd(amount: string): bigint {
-    if (!isValidCcdString(amount)) {
-        throw new Error('Given string that was not a valid CCD string.');
-    }
-    if (amount.includes(separator)) {
-        const separatorIndex = amount.indexOf(separator);
-        const ccd = amount.slice(0, separatorIndex);
-        const microCcd = parseSubCcd(amount.slice(separatorIndex + 1));
-        return BigInt(ccd) * microCcdPerCcd + BigInt(microCcd);
-    }
-    return BigInt(amount) * microCcdPerCcd;
-}
+export const ccdToMicroCcd = (amount: string) =>
+    fractionalToInteger(amount, ccdMaxDecimal);
 
 export const formatCcdString = formatNumberStringWithDigits(2);
 

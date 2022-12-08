@@ -73,3 +73,10 @@ scripts/disclaimer.rst
 scripts/disclaimer.txt
 
 lib
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
