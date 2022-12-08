@@ -38,8 +38,10 @@ const parseGender = (sex: Sex) => {
             return 'Male';
         case Sex.Female:
             return 'Female';
-        default:
+        case Sex.NA:
             return 'N/A';
+        default:
+            return 'Unavailable';
     }
 };
 
@@ -53,6 +55,8 @@ enum DocumentType {
 
 const parseDocType = (docType: DocumentType) => {
     switch (docType) {
+        case DocumentType.NA:
+            return 'N/A';
         case DocumentType.NationalIdCard:
             return 'National ID card';
         case DocumentType.Passport:
@@ -62,7 +66,7 @@ const parseDocType = (docType: DocumentType) => {
         case DocumentType.ImmigrationCard:
             return 'Immigration card';
         default:
-            return 'N/A';
+            return 'Unavailable';
     }
 };
 
@@ -70,7 +74,7 @@ const parseDate = (date: string) => {
     try {
         return formatDate(date);
     } catch {
-        return 'N/A';
+        return 'Unavailable';
     }
 };
 
