@@ -57,10 +57,18 @@ export function getCurrentYearMonth(): YearMonth {
     return date.getFullYear() + month;
 }
 
-export const dateFromTimeStamp = (
-    timeStamp: string | bigint,
+/**
+ * Converts a unix timestamp to a Date type.
+ * @param timestamp the unix timestamp, in seconds or milliseconds.
+ * @param unit the unit of timestamp
+ * @returns a Date representing the unix timestamp
+ */
+export function dateFromTimestamp(
+    timestamp: string | bigint,
     unit: TimeStampUnit = TimeStampUnit.seconds
-): Date => new Date(parseInt(timeStamp.toString(), 10) * unit);
+): Date {
+    return new Date(parseInt(timestamp.toString(), 10) * unit);
+}
 
 /**
  * Given a unix timeStamp, return the date in ISO formatted string.
