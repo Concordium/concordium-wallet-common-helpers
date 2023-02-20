@@ -77,7 +77,7 @@ export function dateFromTimestamp(
 export const getISOFormat = (
     timeStamp: string | bigint,
     unit: TimeStampUnit = TimeStampUnit.seconds
-) => dateFromTimeStamp(timeStamp, unit).toISOString();
+) => dateFromTimestamp(timeStamp, unit).toISOString();
 
 export enum TimeConstants {
     Second = 1000,
@@ -272,7 +272,7 @@ export function subtractHours(hours: number, date: Date) {
  * Assumes the timestamp is in seconds, otherwise the unit should be specified.
  */
 export function parseTime(timeStamp: string | bigint, unit?: TimeStampUnit) {
-    return getFormattedDateString(dateFromTimeStamp(timeStamp, unit));
+    return getFormattedDateString(dateFromTimestamp(timeStamp, unit));
 }
 
 const stripTime = (date: Date) => {
