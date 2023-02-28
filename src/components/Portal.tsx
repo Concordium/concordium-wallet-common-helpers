@@ -1,5 +1,6 @@
 import {
     PropsWithChildren,
+    ReactPortal,
     useEffect,
     useLayoutEffect,
     useMemo,
@@ -28,7 +29,7 @@ export default function Portal({
     root: r,
     children,
     className,
-}: PropsWithChildren<PortalProps>) {
+}: PropsWithChildren<PortalProps>): ReactPortal {
     const { current: el } = useRef(document.createElement('div'));
     const root = useMemo(
         () => r ?? document.getElementsByTagName('body')[0],
