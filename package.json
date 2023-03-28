@@ -5,9 +5,18 @@
     "module": "./lib/cjs/index.js",
     "types": "./lib/types/index.d.ts",
     "exports": {
-        "import": "./lib/esm/index.js",
-        "require": "./lib/cjs/index.js",
-        "default": "./lib/esm/index.js"
+        ".": {
+            "import": "./lib/esm/index.js",
+            "require": "./lib/cjs/index.js",
+            "default": "./lib/esm/index.js",
+            "types": "./lib/types/index.d.ts"
+        },
+        "./utils": {
+            "import": "./lib/esm/utils/index.js",
+            "require": "./lib/cjs/utils/index.js",
+            "default": "./lib/esm/utils/index.js",
+            "types": "./lib/types/utils/index.d.ts"
+        }
     },
     "scripts": {
         "postinstall": "tsc --project tsconfig.types.json & tsc --project tsconfig.esm.json & tsc --project tsconfig.cjs.json",
