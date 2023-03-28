@@ -1,12 +1,11 @@
 {
     "compilerOptions": {
         "target": "ES2020",
-        "module": "ESNext",
         "lib": ["dom", "esnext", "webworker"],
         "jsx": "react",
         "baseUrl": ".",
         "strict": true,
-        "declaration": true,
+        "declaration": false,
         "sourceMap": true,
         /* Additional Checks */
         "noUnusedLocals": true,
@@ -21,11 +20,8 @@
         "skipLibCheck": true,
         "paths": {
             "~/*": ["./src/*"]
-        }
+        },
+        "rootDir": "src"
     },
-    "include": ["src"],
-    "compilerOptions": {
-        "rootDir": "src",
-        "outDir": "./lib"
-    }
+    "include": ["src"]
 }

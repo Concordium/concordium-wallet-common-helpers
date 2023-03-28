@@ -1,11 +1,17 @@
 {
     "name": "wallet-common-helpers",
     "version": "1.5.0",
-    "module": "lib/index.js",
-    "types": "lib/index.d.ts",
+    "main": "./lib/esm/index.js",
+    "module": "./lib/cjs/index.js",
+    "types": "./lib/types/index.d.ts",
+    "exports": {
+        "import": "./lib/esm/index.js",
+        "require": "./lib/cjs/index.js",
+        "default": "./lib/esm/index.js"
+    },
     "scripts": {
-        "postinstall": "tsc",
-        "build": "tsc",
+        "postinstall": "tsc --project tsconfig.types.json & tsc --project tsconfig.esm.json & tsc --project tsconfig.cjs.json",
+        "build": "yarn postinstall",
         "lint": "eslint . --cache --ext .ts,.tsx --max-warnings 0",
         "lint-fix": "yarn --silent lint --fix; exit 0",
         "test": "jest"
