@@ -1,9 +1,4 @@
-import {
-    Attributes,
-    AttributesKeys,
-    AttributeKey,
-} from '@concordium/common-sdk/lib/types';
-import { formatDate } from './timeHelpers';
+import { AttributesKeys, AttributeKey } from '@concordium/common-sdk/lib/types';
 
 export const attributeNamesMap: {
     [P in AttributeKey]: string;
@@ -22,80 +17,6 @@ export const attributeNamesMap: {
     sex: 'Sex',
     dob: 'Date of birth',
 };
-
-enum Sex {
-    NotKnown,
-    Male,
-    Female,
-    NA = 9,
-}
-
-const parseGender = (sex: Sex) => {
-    switch (sex) {
-        case Sex.NotKnown:
-            return 'Not known';
-        case Sex.Male:
-            return 'Male';
-        case Sex.Female:
-            return 'Female';
-        case Sex.NA:
-            return 'N/A';
-        default:
-            return 'Unavailable';
-    }
-};
-
-enum DocumentType {
-    NA,
-    Passport,
-    NationalIdCard,
-    DriversLicense,
-    ImmigrationCard,
-}
-
-const parseDocType = (docType: DocumentType) => {
-    switch (docType) {
-        case DocumentType.NA:
-            return 'N/A';
-        case DocumentType.NationalIdCard:
-            return 'National ID card';
-        case DocumentType.Passport:
-            return 'Passport';
-        case DocumentType.DriversLicense:
-            return 'Drivers license';
-        case DocumentType.ImmigrationCard:
-            return 'Immigration card';
-        default:
-            return 'Unavailable';
-    }
-};
-
-const parseDate = (date: string) => {
-    try {
-        return formatDate(date);
-    } catch {
-        return 'Unavailable';
-    }
-};
-
-export function formatAttributeValue(
-    key: AttributeKey,
-    value: Attributes[typeof key]
-): string;
-export function formatAttributeValue(key: string, value: string): string {
-    switch (key) {
-        case 'idDocExpiresAt':
-        case 'idDocIssuedAt':
-        case 'dob':
-            return parseDate(value);
-        case 'sex':
-            return parseGender(parseInt(value, 10));
-        case 'idDocType':
-            return parseDocType(parseInt(value, 10));
-        default:
-            return value;
-    }
-}
 
 /**
  * Compare two attribute key names.
