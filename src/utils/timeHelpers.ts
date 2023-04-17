@@ -25,19 +25,20 @@ export enum TimeStampUnit {
 }
 
 /**
- * given a YearMonth | YearMonthDate string (YYYYMM | YYYYMMDD), returns
+ * Given a YearMonth | YearMonthDate string (YYYYMM | YYYYMMDD), returns
  * a displayable format.
  *
  * @example
  * formatDate("202001") => "January 2020"
- * formatDate("20200101") => "01 January 2020"
+ * formatDate("20200101") => "1 January 2020"
+ * formatDate("202001", "da") => "1. januar 2020"
  */
-export function formatDate(date: YearMonth | YearMonthDate) {
+export function formatDate(date: YearMonth | YearMonthDate, locale?: string) {
     const y = date.slice(0, 4);
     const m = date.slice(4, 6);
     const d = date.slice(6, 8);
 
-    const dtFormat = new Intl.DateTimeFormat('en-GB', {
+    const dtFormat = new Intl.DateTimeFormat(locale || 'en-GB', {
         day: d ? '2-digit' : undefined,
         month: 'long',
         year: 'numeric',
