@@ -1,4 +1,8 @@
-import { dateFromTimestamp, TimeStampUnit } from '../../src/utils/timeHelpers';
+import {
+    dateFromTimestamp,
+    formatDate,
+    TimeStampUnit,
+} from '../../src/utils/timeHelpers';
 
 test('date from timestamp milliseconds', () => {
     const timestamp = BigInt(1659532455220);
@@ -19,4 +23,14 @@ test('date from timestamp defaults to seconds', () => {
     expect(dateFromTimestamp(timestamp, TimeStampUnit.seconds)).toEqual(
         dateFromTimestamp(timestamp)
     );
+});
+
+test('format date without locales', () => {
+    const date = '20230114';
+    expect(formatDate(date)).toEqual('14 January 2023');
+});
+
+test('format date with locale', () => {
+    const date = '20230114';
+    expect(formatDate(date, 'da')).toEqual('14. januar 2023');
 });
