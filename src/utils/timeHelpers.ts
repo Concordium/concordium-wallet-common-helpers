@@ -6,9 +6,11 @@ import {
     RewardStatus,
     StakePendingChange,
 } from '@concordium/common-sdk/lib/types';
-import { isStakePendingChangeV0 } from '@concordium/common-sdk/lib/accountHelpers';
+import {
+    isStakePendingChangeV0,
+    isChainParametersV0,
+} from '@concordium/common-sdk/lib/versionedTypeHelpers';
 import { isRewardStatusV1 } from '@concordium/common-sdk/lib/rewardStatusHelpers';
-import { isChainParametersV0 } from '@concordium/common-sdk/lib/blockSummaryHelpers';
 import { ensureNumberLength } from './basicHelpers';
 
 /* eslint-disable import/prefer-default-export */
