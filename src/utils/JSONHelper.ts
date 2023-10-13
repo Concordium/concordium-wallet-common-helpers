@@ -3,10 +3,10 @@
 const types = {
     BigInt: 'bigint',
     Date: 'date',
-};
+} as const;
 
 function replacer(this: any, k: string, v: any) {
-    if (typeof v === types.BigInt) {
+    if (typeof v === 'bigint') {
         return { '@type': types.BigInt, value: v.toString() };
     }
     if (this[k] instanceof Date) {

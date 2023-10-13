@@ -1,4 +1,4 @@
-import { AttributesKeys, AttributeKey } from '@concordium/common-sdk/lib/types';
+import { AttributesKeys, AttributeKey } from '@concordium/web-sdk/types';
 
 export const attributeNamesMap: {
     [P in AttributeKey]: string;

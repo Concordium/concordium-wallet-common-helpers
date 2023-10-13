@@ -3,16 +3,13 @@ import {
     BakerPoolPendingChangeRemovePool,
     ChainParameters,
     ConsensusStatus,
+    Duration,
     RewardStatus,
     StakePendingChange,
-} from '@concordium/common-sdk/lib/types';
-import {
-    isStakePendingChangeV0,
     isChainParametersV0,
-} from '@concordium/common-sdk/lib/versionedTypeHelpers';
-import { isRewardStatusV1 } from '@concordium/common-sdk/lib/rewardStatusHelpers';
-import { ensureNumberLength } from './basicHelpers';
-
+    isRewardStatusV1,
+} from '@concordium/web-sdk';
+import { ensureNumberLength } from './basicHelpers.js';
 /* eslint-disable import/prefer-default-export */
 type YearMonth = string; // "YYYYMM"
 type YearMonthDate = string; // "YYYYMMDD"
@@ -21,6 +18,7 @@ type YearMonthDate = string; // "YYYYMMDD"
  * Units of Time for the unix timestamp.
  * Values are set so that (time in unit) * unit = (time in milliseconds)
  */
+// eslint-disable-next-line no-shadow
 export enum TimeStampUnit {
     seconds = 1e3,
     milliSeconds = 1,
@@ -82,6 +80,7 @@ export const getISOFormat = (
     unit: TimeStampUnit = TimeStampUnit.seconds
 ) => dateFromTimestamp(timeStamp, unit).toISOString();
 
+// eslint-disable-next-line no-shadow
 export enum TimeConstants {
     Second = 1000,
     Minute = 60 * Second,
@@ -339,7 +338,8 @@ function dateFromPendingChangeEffectiveTime(
         );
     }
 
-    const rewardPeriodLengthMS = cs.epochDuration * cp.rewardPeriodLength;
+    const rewardPeriodLengthMS =
+        Duration.toMillis(cs.epochDuration) * cp.rewardPeriodLength;
 
     return getSucceedingPayday(
         effectiveTime,
@@ -384,14 +384,6 @@ export function dateFromStakePendingChange(
 ): Date | undefined {
     if (cs === undefined) {
         return undefined;
-    }
-
-    if (isStakePendingChangeV0(spc)) {
-        return epochDate(
-            Number(spc.epoch),
-            cs.epochDuration,
-            new Date(cs.currentEraGenesisTime)
-        );
     }
 
     return dateFromPendingChangeEffectiveTime(spc.effectiveTime, cs, rs, cp);

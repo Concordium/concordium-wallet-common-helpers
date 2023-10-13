@@ -180,19 +180,19 @@ export const getNumberParts = (value: string): NumberParts => {
  * @example
  * parseSubNumber(6)('001') => '001000'
  */
-export const parseSubNumber = (powOf10: number) => (
-    fraction: string
-): string => {
-    let result = fraction;
+export const parseSubNumber =
+    (powOf10: number) =>
+    (fraction: string): string => {
+        let result = fraction;
 
-    if (fraction.length < powOf10) {
-        result += '0'.repeat(Math.max(0, powOf10 - fraction.length));
-    } else {
-        result = fraction.substr(0, powOf10);
-    }
+        if (fraction.length < powOf10) {
+            result += '0'.repeat(Math.max(0, powOf10 - fraction.length));
+        } else {
+            result = fraction.substr(0, powOf10);
+        }
 
-    return result;
-};
+        return result;
+    };
 
 /**
  * @description converts fraction string to bigint by multiplying with resolution. Doesn't work with order or magnitude numbers (e.g. 1.23e-3)
@@ -261,14 +261,11 @@ function increment(value: string, allowOverflow = true): string {
     return valueInc;
 }
 
-const formatRounded = (isInt: boolean) => (
-    whole: string,
-    fractions: string,
-    exponent?: string
-) =>
-    `${whole}${isInt ? '' : `.${fractions}`}${
-        exponent !== undefined ? `e${exponent}` : ''
-    }`;
+const formatRounded =
+    (isInt: boolean) => (whole: string, fractions: string, exponent?: string) =>
+        `${whole}${isInt ? '' : `.${fractions}`}${
+            exponent !== undefined ? `e${exponent}` : ''
+        }`;
 
 /**
  * @description
@@ -276,39 +273,41 @@ const formatRounded = (isInt: boolean) => (
  *
  * @param digits digits to round to. f.x. 3 gives 1.2345 => 1.235
  */
-export const round = (digits = 0) => (value: string): string => {
-    const format = formatRounded(digits === 0);
-    const { whole, fractions = '', exponent } = getNumberParts(value);
+export const round =
+    (digits = 0) =>
+    (value: string): string => {
+        const format = formatRounded(digits === 0);
+        const { whole, fractions = '', exponent } = getNumberParts(value);
 
-    if (fractions.length <= digits) {
-        // If less fractions than digits to round to, do nothing.
-        return value;
-    }
+        if (fractions.length <= digits) {
+            // If less fractions than digits to round to, do nothing.
+            return value;
+        }
 
-    let roundedFractions = fractions.substr(0, digits);
-    const overflow = fractions.substr(digits);
+        let roundedFractions = fractions.substr(0, digits);
+        const overflow = fractions.substr(digits);
 
-    const upperBound = BigInt(
-        `1${new Array(overflow.length).fill('0').join('')}`
-    );
+        const upperBound = BigInt(
+            `1${new Array(overflow.length).fill('0').join('')}`
+        );
 
-    const nOverflow = BigInt(overflow);
-    if (upperBound - nOverflow > nOverflow) {
-        // Round down - simply remove overflowing digits.
-        return format(whole, roundedFractions, exponent);
-    }
-
-    const wholeInc = increment(whole);
-    if (digits !== 0) {
-        roundedFractions = increment(roundedFractions, false);
-
-        if (parseInt(roundedFractions, 10) !== 0 && digits) {
+        const nOverflow = BigInt(overflow);
+        if (upperBound - nOverflow > nOverflow) {
+            // Round down - simply remove overflowing digits.
             return format(whole, roundedFractions, exponent);
         }
-    }
 
-    return format(wholeInc, roundedFractions, exponent);
-};
+        const wholeInc = increment(whole);
+        if (digits !== 0) {
+            roundedFractions = increment(roundedFractions, false);
+
+            if (parseInt(roundedFractions, 10) !== 0 && digits) {
+                return format(whole, roundedFractions, exponent);
+            }
+        }
+
+        return format(wholeInc, roundedFractions, exponent);
+    };
 
 /**
  * @description
@@ -320,19 +319,21 @@ export const round = (digits = 0) => (value: string): string => {
  * ensureTwoDigits('1.2') => '1.20'
  * ensureTwoDigits('1.223') => '1.22'
  */
-export const toFixed = (digits: number) => (value: string): string => {
-    const format = formatRounded(digits === 0);
-    const { whole, fractions = '', exponent } = getNumberParts(value);
+export const toFixed =
+    (digits: number) =>
+    (value: string): string => {
+        const format = formatRounded(digits === 0);
+        const { whole, fractions = '', exponent } = getNumberParts(value);
 
-    if (fractions.length <= digits) {
-        const missingDigits = digits - fractions.length;
-        const danglingZeros = '0'.repeat(missingDigits);
+        if (fractions.length <= digits) {
+            const missingDigits = digits - fractions.length;
+            const danglingZeros = '0'.repeat(missingDigits);
 
-        return format(whole, `${fractions + danglingZeros}`, exponent);
-    }
+            return format(whole, `${fractions + danglingZeros}`, exponent);
+        }
 
-    return round(digits)(value);
-};
+        return round(digits)(value);
+    };
 
 const transformValueWithExponent = (value: string): string => {
     const { whole, fractions = '', exponent = '0' } = getNumberParts(value);
@@ -450,11 +451,13 @@ export const formatNumberStringWithDigits = (
 /**
  * Ensures input function can handle negative numbers, by passing absolute values, and adding sign after execution.
  */
-const handleNegativeNumbers = (f: (v?: string) => string) => (value = '') => {
-    const negative = value.startsWith('-');
-    const abs = value.replace('-', '');
-    return negative ? `-${f(abs)}` : f(value);
-};
+const handleNegativeNumbers =
+    (f: (v?: string) => string) =>
+    (value = '') => {
+        const negative = value.startsWith('-');
+        const abs = value.replace('-', '');
+        return negative ? `-${f(abs)}` : f(value);
+    };
 
 /**
  * Trims leading zeros from number string. Returns input value if valid number string cannot be parsed.

@@ -13,15 +13,17 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         /* Module Resolution Options */
-        "moduleResolution": "node",
+        "module": "Node16",
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
         "allowJs": true,
+        "esModuleInterop": true,
         "skipLibCheck": true,
         "paths": {
             "~/*": ["./src/*"]
         },
-        "rootDir": "src"
+        "rootDir": "src",
+        "outDir": "./lib"
     },
-    "include": ["src"]
+    "include": ["src/**/*", "test/**/*", "jest.config.ts"]
 }
