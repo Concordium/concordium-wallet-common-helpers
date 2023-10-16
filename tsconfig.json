@@ -5,7 +5,7 @@
         "jsx": "react",
         "baseUrl": ".",
         "strict": true,
-        "declaration": false,
+        "declaration": true,
         "sourceMap": true,
         /* Additional Checks */
         "noUnusedLocals": true,
@@ -21,9 +21,7 @@
         "skipLibCheck": true,
         "paths": {
             "~/*": ["./src/*"]
-        },
-        "rootDir": "src",
-        "outDir": "./lib"
+        }
     },
     "include": ["src/**/*", "test/**/*", "jest.config.ts"]
 }
