@@ -737,8 +737,8 @@ __metadata:
   linkType: hard
 
 "@concordium/web-sdk@npm:beta":
-  version: 7.0.0-rc.1
-  resolution: "@concordium/web-sdk@npm:7.0.0-rc.1"
+  version: 7.0.0-rc.2
+  resolution: "@concordium/web-sdk@npm:7.0.0-rc.2"
   dependencies:
     "@concordium/rust-bindings": 2.0.0-rc.1
     "@grpc/grpc-js": ^1.9.4
@@ -747,6 +747,7 @@ __metadata:
     "@protobuf-ts/grpcweb-transport": ^2.9.1
     "@protobuf-ts/runtime-rpc": ^2.8.2
     "@scure/bip39": ^1.1.0
+    "@types/big.js": ^6.2.0
     big.js: ^6.2.0
     bs58check: ^3.0.1
     buffer: ^6.0.3
@@ -754,7 +755,7 @@ __metadata:
     iso-3166-1: ^2.1.1
     json-bigint: ^1.0.0
     uuid: ^8.3.2
-  checksum: bfdaeae33a01c191616fddedc324d4cdd765f586f721eb78c7c5c32b53ab8e8266fb6ed839e6c4d23acad8babaf1f89e67428603ba16c9f5ceeacb4ae3523f6f
+  checksum: 46935e5940a59e15c1b386452296b14e8cd6d46f756f7a5f7679295545a0b5968a7fec53a6b1cb0b6e746ffabc98b3e5a7303d2be03c2eaa32b4489e6d869b15
   languageName: node
   linkType: hard
 
@@ -1536,6 +1537,13 @@ __metadata:
   dependencies:
     "@babel/types": ^7.3.0
   checksum: 8992d8c1eaaf1c793e9184b930767883446939d2744c40ea4e9591086e79b631189dc519931ed8864f1e016742a189703c217db59b800aca84870b865009d8b4
+  languageName: node
+  linkType: hard
+
+"@types/big.js@npm:^6.2.0":
+  version: 6.2.0
+  resolution: "@types/big.js@npm:6.2.0"
+  checksum: 69216051378559083453eb89ff63c70300928ebe3e5ccf2af98be39cdce1591d206a2206f1b3b97234b281646b54ded4c7bdf67fa4e383dccd278d129694af67
   languageName: node
   linkType: hard
 
