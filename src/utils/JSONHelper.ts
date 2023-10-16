@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { jsonStringify, jsonParse } from '@concordium/web-sdk';
 
 const types = {
     BigInt: 'bigint',
@@ -16,14 +17,14 @@ function replacer(this: any, k: string, v: any) {
 }
 
 export function stringify(input: any) {
-    return JSON.stringify(input, replacer);
+    return jsonStringify(input, replacer);
 }
 
 export function parse(input: string | undefined) {
     if (!input) {
         return undefined;
     }
-    return JSON.parse(input, (_, v) => {
+    return jsonParse(input, (_, v) => {
         if (v) {
             switch (v['@type']) {
                 case types.BigInt:
