@@ -18,7 +18,6 @@ type YearMonthDate = string; // "YYYYMMDD"
  * Units of Time for the unix timestamp.
  * Values are set so that (time in unit) * unit = (time in milliseconds)
  */
-// eslint-disable-next-line no-shadow
 export enum TimeStampUnit {
     seconds = 1e3,
     milliSeconds = 1,
@@ -80,7 +79,6 @@ export const getISOFormat = (
     unit: TimeStampUnit = TimeStampUnit.seconds
 ) => dateFromTimestamp(timeStamp, unit).toISOString();
 
-// eslint-disable-next-line no-shadow
 export enum TimeConstants {
     Second = 1000,
     Minute = 60 * Second,

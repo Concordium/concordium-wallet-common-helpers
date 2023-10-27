@@ -3,8 +3,6 @@ import React from 'react';
 import clsx from 'clsx';
 import { chunkString } from '../utils/basicHelpers.js';
 
-// Seems bugged?
-// eslint-disable-next-line no-shadow
 export enum AddressDisplayFormat {
     Ledger,
     DoubleLine,

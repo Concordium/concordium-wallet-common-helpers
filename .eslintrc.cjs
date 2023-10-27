@@ -34,6 +34,8 @@ module.exports = {
         'class-methods-use-this': 'off',
         'react/prop-types': 'off',
         'no-await-in-loop': 'off',
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': 'error',
         curly: 'error',
     },
     parserOptions: {

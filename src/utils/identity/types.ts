@@ -2,7 +2,6 @@
  * The list of possible statuses returned by an identity provider
  * when querying for an identity object.
  */
-// eslint-disable-next-line no-shadow
 export enum IdentityProviderIdentityStatus {
     /** Pending identity verification and initial account creation. */
     Pending = 'pending',
