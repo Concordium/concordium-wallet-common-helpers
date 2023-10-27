@@ -4,7 +4,7 @@ import {
     parseSubNumber,
     toFraction,
     addThousandSeparators,
-} from './numberStringHelpers';
+} from './numberStringHelpers.js';
 
 export function getCcdSymbol(): string {
     return '\u03FE';

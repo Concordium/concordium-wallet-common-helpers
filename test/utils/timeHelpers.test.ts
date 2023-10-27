@@ -2,7 +2,7 @@ import {
     dateFromTimestamp,
     formatDate,
     TimeStampUnit,
-} from '../../src/utils/timeHelpers';
+} from '../../src/utils/timeHelpers.js';
 
 test('date from timestamp milliseconds', () => {
     const timestamp = BigInt(1659532455220);

@@ -2,8 +2,8 @@ import type {
     AccountInfo,
     AccountInfoBaker,
     AccountInfoDelegator,
-} from '@concordium/common-sdk';
-import { max } from './basicHelpers';
+} from '@concordium/web-sdk';
+import { max } from './basicHelpers.js';
 
 export interface PublicAccountAmounts {
     total: bigint;
@@ -25,13 +25,15 @@ export function getPublicAccountAmounts(
     if (!accountInfo) {
         return { total: 0n, staked: 0n, scheduled: 0n, atDisposal: 0n };
     }
-    const total = BigInt(accountInfo.accountAmount);
+    const total = BigInt(accountInfo.accountAmount.microCcdAmount);
     const staked =
-        (accountInfo as AccountInfoBaker).accountBaker?.stakedAmount ??
-        (accountInfo as AccountInfoDelegator).accountDelegation?.stakedAmount ??
+        (accountInfo as AccountInfoBaker).accountBaker?.stakedAmount
+            .microCcdAmount ??
+        (accountInfo as AccountInfoDelegator).accountDelegation?.stakedAmount
+            .microCcdAmount ??
         0n;
     const scheduled = accountInfo.accountReleaseSchedule
-        ? BigInt(accountInfo.accountReleaseSchedule.total)
+        ? BigInt(accountInfo.accountReleaseSchedule.total.microCcdAmount)
         : 0n;
     const atDisposal = total - max(scheduled, staked);
     return { total, staked, scheduled, atDisposal };

@@ -3,7 +3,7 @@ import {
     ccdToMicroCcd,
     displayAsCcd,
     getCcdSymbol,
-} from '../../src/utils/ccd';
+} from '../../src/utils/ccd.js';
 
 const micro = BigInt(1000000);
 

@@ -1,7 +1,7 @@
-export { default as Portal } from './Portal';
-export { default as DetectClickOutside } from './DetectClickOutside';
+export { default as Portal } from './Portal.js';
+export { default as DetectClickOutside } from './DetectClickOutside.js';
 export {
     default as DisplayAddress,
     AddressDisplayFormat,
-} from './DisplayAddress';
-export { default as DisplayAsQR } from './DisplayAsQR';
+} from './DisplayAddress.js';
+export { default as DisplayAsQR } from './DisplayAsQR.js';

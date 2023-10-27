@@ -3,16 +3,13 @@ import {
     BakerPoolPendingChangeRemovePool,
     ChainParameters,
     ConsensusStatus,
+    Duration,
     RewardStatus,
     StakePendingChange,
-} from '@concordium/common-sdk/lib/types';
-import {
-    isStakePendingChangeV0,
     isChainParametersV0,
-} from '@concordium/common-sdk/lib/versionedTypeHelpers';
-import { isRewardStatusV1 } from '@concordium/common-sdk/lib/rewardStatusHelpers';
-import { ensureNumberLength } from './basicHelpers';
-
+    isRewardStatusV1,
+} from '@concordium/web-sdk';
+import { ensureNumberLength } from './basicHelpers.js';
 /* eslint-disable import/prefer-default-export */
 type YearMonth = string; // "YYYYMM"
 type YearMonthDate = string; // "YYYYMMDD"
@@ -339,7 +336,8 @@ function dateFromPendingChangeEffectiveTime(
         );
     }
 
-    const rewardPeriodLengthMS = cs.epochDuration * cp.rewardPeriodLength;
+    const rewardPeriodLengthMS =
+        Duration.toMillis(cs.epochDuration) * cp.rewardPeriodLength;
 
     return getSucceedingPayday(
         effectiveTime,
@@ -384,14 +382,6 @@ export function dateFromStakePendingChange(
 ): Date | undefined {
     if (cs === undefined) {
         return undefined;
-    }
-
-    if (isStakePendingChangeV0(spc)) {
-        return epochDate(
-            Number(spc.epoch),
-            cs.epochDuration,
-            new Date(cs.currentEraGenesisTime)
-        );
     }
 
     return dateFromPendingChangeEffectiveTime(spc.effectiveTime, cs, rs, cp);
