@@ -86,7 +86,7 @@
         "typescript": "^5.2.2"
     },
     "dependencies": {
-        "@concordium/web-sdk": "^7.0.0",
+        "@concordium/web-sdk": "^7.0.3",
         "buffer": "^6.0.3",
         "cbor": "^8.0.0",
         "clsx": "^2.0.0",
