@@ -6,8 +6,6 @@ import {
     Duration,
     RewardStatus,
     StakePendingChange,
-    isChainParametersV0,
-    isRewardStatusV1,
 } from '@concordium/web-sdk';
 import { ensureNumberLength } from './basicHelpers.js';
 /* eslint-disable import/prefer-default-export */
@@ -330,7 +328,7 @@ function dateFromPendingChangeEffectiveTime(
         return undefined;
     }
 
-    if (!isRewardStatusV1(rs) || isChainParametersV0(cp)) {
+    if (rs.version === 0 || cp.version === 0) {
         throw new Error(
             'Not possible to calculate date due to mismatch between reward status, chain parameters, and pending change versions.'
         );
