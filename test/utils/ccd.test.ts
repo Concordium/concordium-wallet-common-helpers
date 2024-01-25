@@ -12,7 +12,7 @@ test('A string with a non-digit is invalid CCD input', () => {
 });
 
 test('A string with only digits is valid CCD input', () => {
-    expect(isValidCcdString('2135731033157134')).toBe(true);
+    expect(isValidCcdString('2135731033157')).toBe(true);
 });
 
 test('A separator alone is invalid CCD input', () => {
@@ -45,6 +45,11 @@ test('An empty string is not allowed', () => {
 
 test("Doesn't allow exponent", () => {
     expect(isValidCcdString('10e2')).toBe(false);
+});
+
+test('A string larger than 64 bits are not valid', () => {
+    expect(isValidCcdString('1844674407370950')).toBe(false);
+    expect(isValidCcdString('184467440737095.516155')).toBe(false);
 });
 
 test('Undefined is not allowed', () => {
