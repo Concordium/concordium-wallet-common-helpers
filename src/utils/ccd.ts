@@ -10,8 +10,10 @@ export function getCcdSymbol(): string {
     return '\u03FE';
 }
 
+const UNSIGNED_64BIT_MAX = 18446744073709551615n; // 2**64 - 1
 export const microCcdPerCcd = 1000000n;
 export const ccdMaxDecimal = 6;
+export const ccdMaxValue = UNSIGNED_64BIT_MAX;
 const separator = '.';
 
 /**
@@ -30,14 +32,6 @@ function toBigInt(input: bigint | string): bigint {
     }
     return input;
 }
-
-// Checks that the input is a valid CCD string.
-export const isValidCcdString = isValidResolutionString(
-    microCcdPerCcd,
-    false,
-    false,
-    false
-);
 
 const decimalsToResolution = (maxDecimals: number) =>
     10n ** BigInt(maxDecimals);
@@ -67,6 +61,11 @@ export function fractionalToInteger(amount: string, maxDecimals: number) {
 
 export const integerToFractional = (maxDecimals: number) =>
     toFraction(decimalsToResolution(maxDecimals));
+
+// Checks that the input is a valid CCD string.
+export const isValidCcdString = (cand: string) =>
+    isValidResolutionString(microCcdPerCcd, false, false, false)(cand) &&
+    fractionalToInteger(cand, ccdMaxDecimal) <= ccdMaxValue;
 
 /**
  * Convert a microCCD amount to a ccd string.
